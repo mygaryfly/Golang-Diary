@@ -1,6 +1,23 @@
 # Golang-Diary
-To learn step by step
 
-DAY 001
+1. 标题1
 
-· Attempt to submit / commit / push to github
+    1.
+    2.
+    3.
+
+2. 标题2
+
+    1.
+    2.
+    3.
+
+3. 标题3
+
+    1.
+    2.
+    3.
+
+4. 复习链接用
+
+    1. [day-01](./day-01/1.概念.md)
