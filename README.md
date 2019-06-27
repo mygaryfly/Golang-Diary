@@ -1,23 +1,5 @@
 # Golang-Diary
 
-1. 标题1
-
-    1.
-    2.
-    3.
-
-2. 标题2
-
-    1.
-    2.
-    3.
-
-3. 标题3
-
-    1.
-    2.
-    3.
-
-4. 复习链接用
+>No matter finally i will start with Golang or not, I will keep learning codes.
 
     1. [day-01](./day-01/1.概念.md)
