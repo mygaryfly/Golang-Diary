@@ -32,4 +32,9 @@
 
     在这个领域比较 Python 和 Go 并不太公平。Go 非常年轻，但我还是会在发现 Go 本身不支持某个功能时感到很不解。更让我失望的是，一些人在 StackOverfolw 上贴了些本应是内置函数的代码，然后每个人都仿佛没事儿一样直接把代码粘贴到项目里使用。
     
-[观点来源](https://www.jianshu.com/p/59c972dc070a)
+> [观点来源](https://www.jianshu.com/p/59c972dc070a)
+
+> [GO在前端的前景](https://www.cnblogs.com/qiniu/p/10213162.html)
+
+> ![hello](./image/gohello.jpg)
+
