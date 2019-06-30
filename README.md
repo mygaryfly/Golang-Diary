@@ -1,3 +1,8 @@
+###GO学习资料网站
+* [菜鸟教程](https://www.runoob.com/go/go-basic-syntax.html)
+* [GO语言中文网](https://studygolang.com)
+* [腾讯云](https://cloud.tencent.com/developer/doc/1101)
+
 # Golang-Diary
 
 >No matter finally i will start with Golang or not, I will keep learning codes.
