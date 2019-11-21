@@ -11,3 +11,5 @@
 1. [day-01](./day-01/1.概念.md)
 2. [day-02 Go区别Python](./day-02/go%20vs%20python.md)
 3. [day-03 Go技术树](./day-03/go_tree.md)
+4. [day-04 基础语法](./day-04/day-04.md)
+5. [day-05 关键字](./day-05/day-05.md)
