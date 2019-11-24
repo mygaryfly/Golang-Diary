@@ -1,12 +1,16 @@
-package rand
+package main
 
-// #include <stdlib.h>
-import "C"
+var a = "G"
 
-func Random() int {
-	return int(C.random())
+func main() {
+	n()
+	m()
+	n()
 }
 
-func Seed(i int) {
-	C.srandom(C.uint(i))
+func n() { print(a) }
+
+func m() {
+	a := "O"
+	print(a)
 }

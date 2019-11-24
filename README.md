@@ -13,3 +13,4 @@
 3. [day-03 Go技术树](./day-03/go_tree.md)
 4. [day-04 基础语法](./day-04/day-04.md)
 5. [day-05 关键字](./day-05/day-05.md)
+6. [day-06 变量](./Days/day06.md)
