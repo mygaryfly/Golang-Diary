@@ -1,12 +1,14 @@
-package rand
+package main
 
-// #include <stdlib.h>
-import "C"
+import (
+	"fmt"
+   "runtime"
+	"os"
+)
 
-func Random() int {
-	return int(C.random())
-}
-
-func Seed(i int) {
-	C.srandom(C.uint(i))
+func main() {
+	var goos string = runtime.GOOS
+	fmt.Printf("The operating system is: %s\n", goos)
+	path := os.Getenv("PATH")
+	fmt.Printf("Path is %s\n", path)
 }
