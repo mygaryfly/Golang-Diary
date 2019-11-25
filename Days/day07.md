@@ -53,3 +53,11 @@
 ### 二，字符串
 
 ![](./images/d7md_a.jpg)
+
+* 拼接的简写形式 += 也可以用于字符串：
+```
+s := "hel" + "lo,"
+s += "world!"
+fmt.Println(s) //输出 “hello, world!”
+```
+* 在循环中使用加号 + 拼接字符串并不是最高效的做法，更好的办法是使用函数 strings.Join()，有没有更好地办法了？有！使用字节缓冲（bytes.Buffer）拼接更加给力
