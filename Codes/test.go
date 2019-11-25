@@ -52,3 +52,5 @@ func main() {
 		fmt.Printf("%2.2f / ", 100*rand.Float32())
 	}
 }
+
+//https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md
