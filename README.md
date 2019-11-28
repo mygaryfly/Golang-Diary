@@ -17,4 +17,4 @@
 5. [day-05 关键字](./day-05/day-05.md)
 6. [day-06 变量](./Days/day06.md)
 7. [day-07 go格式化字符串](./Days/day07.md)
-8. [day-08 go mod](./Days/day08.md)
+8. [day-08 go mod](./Days/day08.md) & [指针](./Days/day08a.md)
