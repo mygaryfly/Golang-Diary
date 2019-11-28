@@ -99,3 +99,22 @@ The position of the first instance of "Hi" is: 0
 The position of the last instance of "Hi" is: 14
 
 The position of "Burger" is: -1
+
+* 字符串包含关系
+Contains 判断字符串 s 是否包含 substr：
+strings.Contains(s, substr string) bool
+
+```bazaar
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main(){
+	xtr:= "sublime"
+	fmt.Printf("Does \"%s\" contains %s ? ",xtr,"li")
+	fmt.Printf("%t\n",strings.Contains(xtr,"li"))
+}
+```
