@@ -14,6 +14,8 @@
 
 %T: type of any value// 值的类型的Go语法表示
 
+%p: 指针的格式化标识符
+
 %%: literal percent sign
 
 整数：
