@@ -1,10 +1,10 @@
-#### *常量*
+#### **常量**
 
 ##### *一，常量的定义*
 
 常量使用关键字 const 定义，用于存储不会改变的数据。
 
-存储在常量中的数据类型只可以是<font color=#0000FF >布尔型、数字型（整数型、浮点型和复数）和字符串型。</font>
+存储在常量中的数据类型只可以是布尔型、数字型（整数型、浮点型和复数）和字符串型。
 * 常量的定义格式：const identifier [type] = value，例如：
 `const Pi = 3.14159`
 * 显式类型定义： `const b string = "abc"`
@@ -83,3 +83,7 @@ fmt.Println(e) // 在每遇到一个新的常量块或单个常量声明时， i
 输出结果：
 
 ![](./images/d9md_b.jpg)
+
+####  **运算符**
+> [信息来源](https://www.runoob.com/go/go-operators.html)
+
