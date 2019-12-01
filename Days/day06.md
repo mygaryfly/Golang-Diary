@@ -76,3 +76,48 @@ func f2() {
    print(a)
 }
 ```
+##### 练习三：
+
+思考下面代码的输出结果：
+```
+package main
+ import ("fmt"
+ )
+ func main(){
+ var a int = 65
+ b:= string(a) //string() 函数表示对函数内数据转换成一个文本格式
+ fmt.println(b)
+}
+```
+输出结果：A 
+>由于string() 函数表示对函数内数据转换成一个文本格式,函数直接将65转换成了字母A
+
+如果我们要将结果仍然是返回65，代码如下
+```
+package main
+ import (
+ "fmt"
+ "strconv"
+ )
+ func main(){
+ var a int = 65
+ b:= strconv.Itoa(a) //strconv.Itoa 函数表示将文本转换成数据
+ fmt.println(b)
+}
+```
+输出结果:65
+利用strconv函数中的Itoa属性，将文本A转换成65
+* 如果我们仍然想通过fmt.Println(a)的方式来实现结果65
+```
+package main
+ import (
+ "fmt"
+ "strconv"
+ )
+ func main(){
+ var a int = 65
+ b:= strconv.Itoa(a) //strconv.Itoa 函数表示将文本转换成数据
+ a:= strconv.Atoi(b) //strconv.Atoi 函数将b再转换成int
+ fmt.println(a)
+}
+```
