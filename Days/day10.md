@@ -19,6 +19,7 @@ if condition {
 }
 ````
 ![](./images/d10md_b.jpg)
+
 如果存在第二个分支，则可以在上面代码的基础上添加 else 关键字以及另一代码块，这个代码块中的代码只有在条件不满足时才会执行。if 和 else 后的两个代码块是相互独立的分支，只可能执行其中一个。
 ```
 if condition {
@@ -62,6 +63,7 @@ func main() {
 ```
 ##### **输出:**  ` The value is true `
 * 如果对bool1取反
+
 ![](./images/d10md_a.jpg)
 
 ##### **输出:**  ` The value is false `
