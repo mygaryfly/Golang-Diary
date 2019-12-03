@@ -19,3 +19,4 @@
 7. [day-07 go格式化字符串](./Days/day07.md) & [指针](./Days/day08a.md)
 8. [day-08 go mod](./Days/day08.md)
 9. [day-09 常量和运算符](./Days/day09.md)
+10. [day-10 条件语句if的用法](./Days/day10.md) & [err测试返回错误](./Days/day10a.md)
