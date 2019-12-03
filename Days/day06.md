@@ -25,6 +25,7 @@ var (
 简短新式的声明语句写上 var 关键字就显得有些多余了，比如我们可以将它们简写为 a := 50 或 b := false。
 
 a 和 b 的类型（int 和 bool）将由编译器自动推断
+* 此外，默认情况下，Go 会为变量分配默认值。Integers 的默认值是 0，booleans 默认值是 false，strings 默认值是 "" 等等
 ##### 注意事项：
 如果在相同的代码块中，我们不可以再次对于相同名称的变量使用初始化声明，例如：a := 20 就是不被允许的，编译器会提示错误 no new variables on left side of :=，但是 a = 20 是可以的，因为这是给相同的变量赋予一个新的值。
 
@@ -121,3 +122,20 @@ package main
  fmt.println(a)
 }
 ```
+##### **多个变量赋值的时候，只要其中有一个变量是新的，就可以使用:=**
+* 例如：
+```
+func main() {
+  power := 1000
+  fmt.Printf("default power is %d\n", power)
+
+  name, power := "Goku", 9000
+  fmt.Printf("%s's power is over %d\n", name, power)
+}
+```
+**_输出_**
+```
+default power is 1000
+Goku's power is over 9000
+```
+尽管变量 power 使用了两次:=，但是编译器不会在第 2 次使用 := 时报错，因为这里有一个新的 name 变量，它可以使用:=。然后你不能改变 power 变量的类型，它已经被声明成一个整型，所以只能赋值整数。

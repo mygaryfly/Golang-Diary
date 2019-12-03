@@ -3,6 +3,7 @@
 * [GO语言中文网](https://studygolang.com)
 * [腾讯云](https://cloud.tencent.com/developer/doc/1101)
 * [在线课程](https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md)
+* [Learnku](https://learnku.com/)
 
 ### 菜鸟开始飞
 * [Start Coding](./Start%20coding.md)
