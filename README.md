@@ -4,9 +4,10 @@
 * [腾讯云](https://cloud.tencent.com/developer/doc/1101)
 * [在线课程](https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md)
 * [Learnku](https://learnku.com/)
-* [GO中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
+* [Go中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
 
 ### 菜鸟开始飞
+* [Go语言编程规范](./Days/day11b.md)
 * [Start Coding](./Start%20coding.md)
 # Golang-Diary
 
