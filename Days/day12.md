@@ -8,7 +8,7 @@
 * Go 语言提供了以下几种类型循环处理语句：
 ![](./images/d12md_b.jpg)
 
-##### **1. for循环**
+#### **1. for循环**
 **_1.1 - 语法_** :
 Go 语言的 For 循环有 3 种形式，只有其中的一种使用分号。
 
@@ -37,7 +37,7 @@ for语句执行过程如下：
 
 ![](./images/d12md_c.jpg)
 
-**_实例1 -_** condition 套用函数
+**_实例 1 -_** condition 套用函数
 
 ```
 package main
@@ -84,7 +84,7 @@ func main() {
 	fmt.Println("game over")
 }
 ```
-**_实例2 -_** 无限循环:
+**_实例 2 -_** 无限循环:
 ```
 package main
 
@@ -100,7 +100,7 @@ func main() {
 ```
 * **小提示**： 要停止无限循环，可以在命令窗口按下ctrl+c 。
 
-**_实例3 -_** For-each range 循环
+**_实例 3 -_** For-each range 循环
 
 ![](./images/d12md_e.jpg)
 
@@ -114,4 +114,43 @@ func main() {
 第 3 位 x 的值 = 5
 第 4 位 x 的值 = 0
 第 5 位 x 的值 = 0
+```
+**_实例 4 -_**九九乘法表
+```
+//自己的傻瓜套路
+package main
+
+import "fmt"
+
+var a,b,c,d int
+
+func main() {
+b:=[]int{1,2,3,4,5,6,7,8,9}
+
+    for a:=1;a<10;a++{
+	    for d:= range b {
+	    c=a*b[d]
+	    fmt.Printf("%d * %d = %d\n",a,b[d],c)
+        }
+    }
+}
+```
+* 跟下面的精简方案比，多用了一个参数，一个数组，和一个函数
+
+```
+package main
+
+import "fmt"
+
+var a, b, c int
+
+func main() {
+
+	for a := 1; a < 10; a++ {
+		for b := 1; b < 10; b++ {
+			c = a * b
+			fmt.Printf("%d * %d = %d\n", a, b, c)
+		}
+	}
+}
 ```
