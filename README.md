@@ -1,3 +1,5 @@
+![](./Days/images/mrm.jpg)
+
 ### GO学习资料网站
 * [菜鸟教程](https://www.runoob.com/go/go-basic-syntax.html)
 * [GO语言中文网](https://studygolang.com)
@@ -24,3 +26,4 @@
 9. [day-09 常量和运算符](./Days/day09.md)
 10. [day-10 条件语句if](./Days/day10.md) & [err测试返回错误](./Days/day10a.md)
 11. [day-11 条件语句swith](./Days/day11.md) & [switch的高级运用](./Days/day11a.md)
+12. [day-12 循环语句for](./Days/day12.md)
