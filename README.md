@@ -1,12 +1,16 @@
+![](./Days/images/mrm.jpg)
+
+
 ### GO学习资料网站
 * [菜鸟教程](https://www.runoob.com/go/go-basic-syntax.html)
 * [GO语言中文网](https://studygolang.com)
 * [腾讯云](https://cloud.tencent.com/developer/doc/1101)
 * [在线课程](https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md)
 * [Learnku](https://learnku.com/)
-* [GO中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
+* [Go中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
 
 ### 菜鸟开始飞
+* [Go语言编程规范](./Days/day11b.md)
 * [Start Coding](./Start%20coding.md)
 # Golang-Diary
 
@@ -23,3 +27,4 @@
 9. [day-09 常量和运算符](./Days/day09.md)
 10. [day-10 条件语句if](./Days/day10.md) & [err测试返回错误](./Days/day10a.md)
 11. [day-11 条件语句swith](./Days/day11.md) & [switch的高级运用](./Days/day11a.md)
+12. [day-12 循环语句for](./Days/day12.md)

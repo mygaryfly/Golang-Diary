@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+<<<<<<< HEAD
 	"strconv"
 )
 
@@ -23,3 +24,16 @@ func main() {
 	newS = strconv.Itoa(an)
 	fmt.Printf("The new string is: %s\n", newS)
 }
+=======
+)
+
+func main() {
+	power := 1000
+	fmt.Printf("default power is %d\n", power)
+
+	name, power := "Goku", 9000
+	fmt.Printf("%s's power is over %d\n", name, power)
+}
+
+//https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md
+>>>>>>> f7594bbeabc11cbfb341467a2c5ec2a6b0467b62
