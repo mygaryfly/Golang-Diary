@@ -8,6 +8,7 @@
 * [在线课程](https://github.com/unknwon/go-fundamental-programming/blob/master/lectures/lecture1.md)
 * [Learnku](https://learnku.com/)
 * [Go中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
+* [Golang中国](https://www.qfgolang.com/)
 
 ### 菜鸟开始飞
 * [Go语言编程规范](./Days/day11b.md)
@@ -28,3 +29,4 @@
 10. [day-10 条件语句if](./Days/day10.md) & [err测试返回错误](./Days/day10a.md)
 11. [day-11 条件语句swith](./Days/day11.md) & [switch的高级运用](./Days/day11a.md)
 12. [day-12 循环语句for](./Days/day12.md)
+13. [day-13 函数](./Days/day13.md)
