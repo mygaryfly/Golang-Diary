@@ -12,6 +12,90 @@ Go 里面有三种类型的函数
 * 匿名函数或者lambda函数
 * 方法（Methods)
 
+#### *_1.1_* 匿名行数
+* 匿名函数是指不需要定义函数名的一种函数实现方式。
+* 在Go里面，函数可以像普通变量一样被传递或使用，Go语言支持随时在代码里定义匿名函数。
+* 匿名函数由一个不带函数名的函数声明和函数体组成。匿名函数的优越性在于可以直接使用函数内的变量，不必声明。
+
+##### **定义匿名函数的方法**
+
+第一种，先声明一个函数类型的变量，然后定义一个匿名函数
+
+第二种，使用更简略的 ":=" 方式定义一个匿名函数
+
+##### **匿名函数的使用方式**
+
+**1.1.1** 在定义匿名函数的时候就可以直接使用（这种方式只使用一次）
+
+```
+package main
+import (
+    "fmt"
+)
+func main(){
+    res1 := func (n1 int, n2 int) int {
+        return n1 + n2
+    }(10, 30)  //括号里的10,30 就相当于参数列表，分别对应n1和n2
+    
+    fmt.Println("res1=",res1)
+}
+```
+*输出结果:* `res1= 40`
+
+**1.1.2** 将匿名函数赋给一个变量（函数变量），再通过该变量来调用匿名函数
+```
+package main
+import (
+    "fmt"
+)
+func main(){
+    //将匿名函数fun 赋给变量test_fun
+    //则test_fun的数据类型是函数类型，可以通过test_fun完成调用
+    test_fun := func (n1 int, n2 int) int {
+        return n1 - n2
+    }
+
+    res2 := test_fun(10, 30)
+    res3 := test_fun(50, 30)
+    fmt.Println("res2=", res2)
+    fmt.Println("res3=", res3)
+    fmt.Printf("%T", test_fun)
+}
+```
+*输出结果：*
+```
+res2= -20
+res3= 20
+func(int, int) int
+```
+**1.1.3** 全局匿名函数:就是将匿名函数赋给一个全局变量，那么这个匿名函数在当前程序里可以使用
+
+```
+package main
+import (
+    "fmt"
+)
+
+//Test_fun 就是定义好的全局变量
+//全局变量必须首字母大写
+var (
+    Test_fun = func (n1 int, n2 int) int {
+        return n1 - n2
+    }
+)
+func main(){
+    val1 := Test_fun(9, 7)
+
+    fmt.Println("val1=", val1)
+}
+```
+
+
+
+##### **匿名函数应用**
+1、匿名函数的变量为函数地址
+
+2、直接创建匿名函数执行并返回结果
 
 #### **二，函数的使用**
 
