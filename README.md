@@ -30,3 +30,4 @@
 11. [day-11 条件语句swith](./Days/day11.md) & [switch的高级运用](./Days/day11a.md)
 12. [day-12 循环语句for](./Days/day12.md)
 13. [day-13 函数](./Days/day13.md)
+14. [day-14 go语言中的结构体 & 方法](./Days/day14.md)
