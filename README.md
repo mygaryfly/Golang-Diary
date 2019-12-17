@@ -12,7 +12,7 @@
 
 ### 菜鸟开始飞
 * [Go语言编程规范](./Days/day11b.md)
-* [Start Coding](./Start%20coding.md)
+* [Start Coding & Training](./Start%20coding.md)
 # Golang-Diary
 
 >No matter finally i will start with Golang or not, I will keep learning codes.
