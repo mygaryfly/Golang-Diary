@@ -16,6 +16,7 @@ Go 里面有三种类型的函数
 ```
 func test(){}                 //无参数，无返回值函数
 func test( a int){}          //有参数，无返回值函数
+func test(args...int)       //...表示这个是不定参数
 func test() int { return 10}                  //有参数，有返回值函数
 
 func ftest(){  
@@ -50,6 +51,45 @@ test3(func() int {
 
     return  e
 })
+```
+* 【小贴士-a】不定参数的位置一定只能位于形参中的最后一个！
+* 【小贴士-b】固定参数一定要传参，不定参数根据需求来传参！
+* 【小贴士-c】不定参数实参的传递
+> 比如：
+```
+package main
+
+import (. "fmt")
+
+func main(){
+    test0(1,2,3,4,5)
+    }
+
+    func test0(args...int){
+		test1(args...) //全部元素传递给tets1
+		}
+		
+    func test1(temp...int){
+        for _,data:=range temp{ //设定temp集合的下标为返回空值，只返回集合体本身内容
+			Println("data=",data)
+		}
+       
+    }
+```
+*输出结果a：*
+```
+data= 1
+data= 2
+data= 3
+data= 4
+data= 5
+```
+> 如果test1改为：
+`test1(args[:2]...) //抓取第一个参数到第三个参数且不包括第三个参数`
+*输出结果b*
+```
+data= 1
+data= 2
 ```
 
 #### *_1.1_* 匿名函数
