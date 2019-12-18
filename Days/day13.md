@@ -12,6 +12,46 @@ Go 里面有三种类型的函数
 * 匿名函数或者lambda函数
 * 方法（Methods)
 
+##### **常见函数形式**
+```
+func test(){}                 //无参数，无返回值函数
+func test( a int){}          //有参数，无返回值函数
+func test() int { return 10}                  //有参数，有返回值函数
+
+func ftest(){  
+
+    func (s string){          //匿名函数，函数内部直接执行
+        fmt.Println(s)
+    }("hello world")
+
+}
+
+a := func(a int){             //函数    可以赋值变量                                                                    
+    fmt.Println(a)
+}
+a(1000)
+
+func test1() func(int) int{    //函数 作为返回值
+    
+    return func(a int) int{
+        
+        return  100
+    }
+}
+
+func test3(a func() int){       //函数作为参数       闭包
+
+        fmt.Println(a)               //函数作为参数  打印0x1093620  函数为引用类型
+    fmt.Println(a())
+}
+
+e := 2222333
+test3(func() int {                
+
+    return  e
+})
+```
+
 #### *_1.1_* 匿名函数
 * 匿名函数是指不需要定义函数名的一种函数实现方式。
 * 在Go里面，函数可以像普通变量一样被传递或使用，Go语言支持随时在代码里定义匿名函数。
@@ -328,16 +368,5 @@ i is of type int
 f is of type float64
 g is of type complex128
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 

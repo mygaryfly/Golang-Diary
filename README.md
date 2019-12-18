@@ -9,6 +9,7 @@
 * [Learnku](https://learnku.com/)
 * [Go中国官网](https://go-zh.org/) & [指南](https://tour.go-zh.org/welcome/1)
 * [Golang中国](https://www.qfgolang.com/)
+* [GOLANGBOT](https://golangbot.com/learn-golang-series/)
 
 ### 菜鸟开始飞
 * [Go语言编程规范](./Days/day11b.md)
