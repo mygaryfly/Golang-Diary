@@ -268,3 +268,110 @@ func main() {
 }
 ```
 *输出结果：* `2019/12/20 16:55:26 func1("Go") = 7, EOF`
+
+#### **三， 递归函数**
+
+#### **3.1 递归函数的定义**
+* 当一个函数在其函数体内调用自身，则称之为递归。最经典的例子便是计算斐波那契数列，即前两个数为1，从第三个数开始每个数均为前两个数之和。
+
+>数列如下所示：
+`1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, …`
+
+##### *_示例 - 7:_*
+> 下面的程序可用于生成该数列
+```
+package main
+
+import "fmt"
+
+func main() {
+	result := 0
+	for i := 0; i <= 10; i++ {
+		result = fibonacci(i)
+		fmt.Printf("fibonacci(%d) is: %d\n", i, result)
+	}
+}
+
+func fibonacci(n int) (res int) {
+	if n <= 1 {
+		res = 1
+	} else {
+		res = fibonacci(n-1) + fibonacci(n-2)
+	}
+	return
+}
+```
+*输出结果：*
+```
+fibonacci(0) is: 1
+fibonacci(1) is: 1
+fibonacci(2) is: 2
+fibonacci(3) is: 3
+fibonacci(4) is: 5
+fibonacci(5) is: 8
+fibonacci(6) is: 13
+fibonacci(7) is: 21
+fibonacci(8) is: 34
+fibonacci(9) is: 55
+fibonacci(10) is: 89
+```
+
+#### **3.2 递归函数的使用**
+
+* 许多问题都可以使用优雅的递归来解决，比如说著名的快速排序算法
+
+* 在使用递归函数时经常会遇到的一个重要问题就是栈溢出：
+  一般出现在大量的递归调用导致的程序栈内存分配耗尽。这个问题可以通过一个名为[**懒惰求值**](https://www.w3cschool.cn/functional_programm_for_rest/4zygvozt.html)的技术解决，在 Go 语言中，我们可以使用管道（channel）和 goroutine来实现。
+
+* Go 语言中也可以使用相互调用的递归函数：
+  多个函数之间相互调用形成闭环。因为 Go 语言编译器的特殊性，这些函数的声明顺序可以是任意的。
+##### *_示例 - 8:_*
+> 下面这个简单的例子展示了函数 odd 和 even 之间的相互调用
+```
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Printf("%d is even: is %t\n", 16, even(16)) // 16 is even: is true
+	fmt.Printf("%d is odd: is %t\n", 17, odd(17))
+	// 17 is odd: is true
+	fmt.Printf("%d is odd: is %t\n", 18, odd(18))
+	// 18 is odd: is false
+}
+
+func even(nr int) bool {
+	if nr == 0 {
+		return true
+	}
+	return odd(RevSign(nr) - 1)
+}
+
+func odd(nr int) bool {
+	if nr == 0 {
+		return false
+	}
+	return even(RevSign(nr) - 1)
+}
+
+func RevSign(nr int) int {
+	if nr < 0 {
+		return -nr
+	}
+	return nr
+}
+```
+#### **3.3 递归函数 - 练习题**
+
+* **练习 - 1**：重写本节中生成斐波那契数列的程序并返回两个命名返回值，即数列中的位置和对应的值，例如 5 与 4，89 与 10。
+* **练习 - 2**：使用递归函数从 10 打印到 1。
+* **练习 - 3**：实现一个输出前 30 个整数的阶乘的程序。
+> n! 的阶乘定义为：n! = n * (n-1)!, 0! = 1，因此它非常适合使用递归函数来实现。
+
+> 然后，使用命名返回值来实现这个程序的第二个版本。
+
+> 特别注意的是，使用 int 类型最多只能计算到 12 的阶乘，因为一般情况下 int 类型的大小为 32 位，继续计算会导致溢出错误。那么，如何才能解决这个问题呢？
+  最好的解决方案就是使用 big 包。
+
