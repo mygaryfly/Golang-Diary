@@ -263,7 +263,34 @@ In main after calling greeting
 ```type binOp func(int, int) int```
 
 在这里，不需要函数体 `{}`
+```
+// 阐述函数本身作为变量的类型，来申明某变量是函数类型的变量
 
+package main
+
+import "fmt"
+
+func Add (a,b int)int{
+	return a+b
+}
+
+func Minus (c,d int)int{
+	return c-d
+}
+// 函数也是一种类型，通过type给一个函数类型起名
+type FuncType func(int,int)int // FuncTpye是一个函数类型，func后没有函数名，也没有函数体。
+
+func main () {
+	var result int
+	result = Add(1,1) //函数传统的调用方式
+	fmt.Println("加法result = ",result)
+// 声明一个函数类型的变量名，它的名称叫fTest
+	var fTest FuncType
+	fTest = Minus // 是变量就可以赋值
+	result = fTest(30,20) // 相当于 Minus(30,20)
+	fmt.Println("减法result = ",result)
+}
+```
 * 函数是一等值（first-class value）：它们可以赋值给变量，就像 `add := binOp` 一样。意思函数可以被当做一个值赋值给变量，或者说可以把一个变量定义为某函数。
 >这个变量知道自己指向的函数的签名，所以给它赋一个具有不同签名的函数值是不可能的。
 * 函数值（functions value）之间可以相互比较：如果它们引用的是相同的函数或者都是 nil 的话，则认为它们是相同的函数。函数不能在其它函数里面声明（不能嵌套），不过我们可以通过使用匿名函数来破除这个限制。
