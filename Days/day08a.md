@@ -67,3 +67,49 @@ ptr 为整型指针数组。因此每个元素都指向了一个值。以下实�
 * 从下面代码的改动可以看到，ptr[i]本身已经局部变量定义为指向int存储地址的指针，不加星号，返回的是存储地址；加星号，被称为反引用。
 
 ![](./images/d8a_md_e.jpg)
+
+##### **指针反引用**
+
+```
+package main
+import "fmt"
+func main() {
+    s := "good bye"
+    var p *string = &s
+    *p = "ciao"
+    fmt.Printf("Here is the pointer p: %p\n", p) // prints address
+    fmt.Printf("Here is the string *p: %s\n", *p) // prints string
+    fmt.Printf("Here is the string s: %s\n", s) // prints same string
+}
+```
+*输出结果：*
+```
+Here is the pointer p: 0x2540820
+Here is the string *p: ciao
+Here is the string s: ciao // 通过对 *p 赋另一个值来更改 “对象”，这样 s 也会随之更改。
+```
+* 通过对 *p 赋另一个值来更改 “对象”，这样 s 也会随之更改。
+
+##### **注意事项**
+* 1，你不能得到一个文字或常量的地址，例如：
+```
+const i = 5
+ptr := &i //error: cannot take the address of i
+ptr2 := &10 //error: cannot take the address of 10
+```
+
+* 2，指针的一个高级应用是你可以传递一个变量的引用（如函数的参数），这样不会传递变量的拷贝。指针传递是很廉价的，只占用 4 个或 8 个字节。当程序在工作中需要占用大量的内存，或很多变量，或者两者都有，使用指针会减少内存占用和提高效率。被指向的变量也保存在内存中，直到没有任何指针指向它们，所以从它们被创建开始就具有相互独立的生命周期。
+
+* 3，指针也可以指向另一个指针，并且可以进行任意深度的嵌套，导致你可以有多级的间接引用，但在大多数情况这会使你的代码结构不清晰
+
+* 4,在大多数情况下 Go 语言可以使程序员轻松创建指针，并且隐藏间接引用，如：自动反向引用。*对一个空指针的反向引用是不合法的，并且会使程序崩溃*
+
+```
+package main
+func main() {
+    var p *int = nil
+    *p = 0
+}
+// in Windows: stops only with: <exit code="-1073741819" msg="process crashed"/>
+// runtime error: invalid memory address or nil pointer dereference
+```
