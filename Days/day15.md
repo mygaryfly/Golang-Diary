@@ -6,7 +6,7 @@
 
 以 `[]` 符号标识的数组类型几乎在所有的编程语言中都是一个基本主力。Go 语言中的数组也是类似的，只是有一些特点。Go 没有 C 那么灵活，但是拥有切片（slice）类型。这是一种建立在 Go 语言数组类型之上的抽象，要想理解切片我们必须先理解数组。数组有特定的用处，但是却有一些呆板，所以在 Go 语言的代码里并不是特别常见。相对的，切片却是随处可见的。它们构建在数组之上并且提供更强大的能力和便捷。
 
-#### **一，声明和初始化**
+#### **一，数组的声明和初始化**
 
 #### **1.1概念和声明**
 
@@ -154,3 +154,108 @@ func main() {
 练习 2：for_array.go: 写一个循环并用下标给数组赋值（从 0 到 15）并且将数组打印在屏幕上。
 
 练习 3：fibonacci_array.go: 在第 6.6 节我们看到了一个递归计算 Fibonacci 数值的方法。但是通过数组我们可以更快的计算出 Fibonacci 数。完成该方法并打印出前 50 个 Fibonacci 数字。
+
+#### **1.3数组的常量**
+
+如果数组值已经提前知道了，那么可以通过 数组常量 的方法来初始化数组，而不用依次使用 `[]=` 方法（所有的组成元素都有相同的常量语法）。
+
+* 第一种变化：`var arrAge = [5]int{18, 20, 15, 22, 16}`
+【注意】`[5]int` 可以从左边起开始忽略：`[10]int {1, 2, 3}` : 这是一个有 10 个元素的数组，除了前三个元素外其他元素都为 0。
+
+* 第二种变化：`var arrLazy = [...]int{5, 6, 7, 8, 22}`
+`...`可同样可以忽略，从技术上说它们其实变化成了切片。
+
+* 第三种变化：`key: value syntax`
+> 比如：`var arrKeyValue = [5]string{3: "Chris", 4: "Ron"}`
+只有索引 3 和 4 被赋予实际的值，其他元素都被设置为空的字符串，所以输出结果为：
+```
+Person at 0 is
+Person at 1 is
+Person at 2 is
+Person at 3 is Chris
+Person at 4 is Ron
+```
+> *在这里数组长度同样可以写成 ... 或者直接忽略。*
+
+此外，你可以取任意数组常量的地址来作为指向新实例的指针。
+##### *_示例 - 1.3.1_*
+
+```
+package main
+import "fmt"
+
+func fp(a *[3]int) { fmt.Println(a) }
+
+func main() {
+    for i := 0; i < 3; i++ {
+        fp(&[3]int{i, i * i, i * i * i})
+    }
+}
+```
+*输出结果：*
+```
+&[0 0 0]
+&[1 1 1]
+&[2 4 8]
+```
+**划个重点**
+几何点（或者数学向量）是一个使用数组的经典例子。为了简化代码通常使用一个别名：
+```
+type Vector3D [3]float32
+var vec Vector3D
+```
+
+#### **1.4多维数组**
+数组通常是一维的，但是可以用来组装成多维数组，例如：
+
+`[3][5]int，[2][2][2]float64`
+内部数组总是长度相同的。Go 语言的多维数组是矩形式的（唯一的例外是切片的数组）
+
+##### *_示例 - 1.4.1_*
+```
+package main
+const (
+    WIDTH  = 1920
+    HEIGHT = 1080
+)
+
+type pixel int
+var screen [WIDTH][HEIGHT]pixel
+
+func main() {
+    for y := 0; y < HEIGHT; y++ {
+        for x := 0; x < WIDTH; x++ {
+            screen[x][y] = 0
+        }
+    }
+}
+```
+#### **1.5将数组传递给函数**
+把一个大数组传递给函数会消耗很多内存。有两种方法可以避免这种现象：
+* 传递数组的指针
+
+* 使用数组的切片
+
+> 接下来的例子阐明了第一种方法：
+```
+package main
+import "fmt"
+
+func main() {
+    array := [3]float64{7.0, 8.5, 9.1}
+    x := Sum(&array) // Note the explicit address-of operator
+    // to pass a pointer to the array
+    fmt.Printf("The sum of the array is: %f", x)
+}
+
+func Sum(a *[3]float64) (sum float64) {
+    for _, v := range a { // derefencing *a to get back to the array is not necessary!
+        sum += v
+    }
+    return
+}
+```
+*输出结果：*
+`The sum of the array is: 24.600000`
+
+但这在 Go 中并不常用，通常使用切片

@@ -77,3 +77,57 @@ func main(){
 * 2，Print语句要放在for循环外。
 
 练习 3：fibonacci_array.go: 在第 6.6 节我们看到了一个递归计算 Fibonacci 数值的方法。但是通过数组我们可以更快的计算出 Fibonacci 数。完成该方法并打印出前 50 个 Fibonacci 数字。
+> 答案 -1
+```
+package main //方法一，数组for循环后打印
+
+import "fmt"
+
+var fibo [50]int
+
+func main(){
+	
+	for n:=0;n<50;n++{
+		
+		if n<=1 {
+			fibo[n]=1
+		} else {
+			fibo[n]=fibo[n-1]+fibo[n-2]
+		}
+	}
+	fmt.Println(fibo)
+
+}
+```
+> 答案 -2
+```
+package main //方法二，递归函数
+
+import "fmt"
+
+var x int
+
+var Fibo [50]int
+
+func main (){
+	
+	for i:=0;i<len(Fibo);i++{
+	
+		Fibo[i]=fx(i)
+		
+		fmt.Printf("Fibo[%d] = %d\n",i,fx(i))
+		}
+}
+
+func fx(x int)(y int){
+	
+	if x<=1 {
+			y=1
+	} else {
+		y = fx(x-1)+fx(x-2)
+	} 
+	return
+} 
+```
+【踩过的坑】
+* 当函数命名和数组命名相同时，系统报错类似`cannot call non-function + 命名`，该现象是因函数和数组命名相同，导致其中一个的功能被屏蔽。main函数是最后运行的函数，内部调用Fibo数组前已经运行过Fibo函数，此时可以视为Fibo函数屏蔽了同名称的Fibo数组的功能。
