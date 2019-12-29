@@ -315,3 +315,237 @@
  【练习2.4 - 1】 给定切片 sl，将一个 []byte 数组追加到 sl 后面。写一个函数 `Append(slice, data []byte) []byte`，该函数在 sl 不能存储更多数据的时候自动扩容。
  
  【练习2.4 - 2】 把一个缓存 buf 分片成两个 切片：第一个是前 n 个 bytes，后一个是剩余的，用一行代码实现。
+ 
+  #### **三，For-range 结构**
+  
+  #### *3.1 range 关键字*
+  
+ Go 语言中 range 关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对。
+ > 这种构建方法可以应用于数组和切片:
+ ```
+ for ix, value := range slice1 {
+     ...
+ }
+ ```
+ 【**重要**】
+ * 第一个返回值 ix 是数组或者切片的索引，第二个是在该索引位置的值；他们都是仅在 for 循环内部可见的局部变量。
+ * value 只是 slice1 某个索引位置的值的一个拷贝，不能用来修改 slice1 该索引位置的值。
+ 
+ #####*_示例3.1-1_*
+ ```
+ package main
+ 
+ import "fmt"
+ 
+ func main() {
+     var slice1 []int = make([]int, 4)
+ 
+     slice1[0] = 1
+     slice1[1] = 2
+     slice1[2] = 3
+     slice1[3] = 4
+ 
+     for ix, value := range slice1 {
+         fmt.Printf("Slice at %d is: %d\n", ix, value)
+     }
+ }
+
+ ```
+  #####*_示例3.1-2_*
+  ```
+  package main
+  import "fmt"
+  
+  func main() {
+      seasons := []string{"Spring", "Summer", "Autumn", "Winter"}
+      for ix, season := range seasons {
+          fmt.Printf("Season %d is: %s\n", ix, season)
+      }
+  
+      var season string
+      for _, season = range seasons { //这里空白符_ 忽略了索引
+          fmt.Printf("%s\n", season)
+      }
+  }
+  ```
+  * 给出了一个关于字符串的例子， _ 可以用于忽略索引。
+ > 如果你只需要索引，你可以忽略第二个变量，例如：
+ ```
+ for ix := range seasons {
+     fmt.Printf("%d", ix)
+ }
+ // Output: 0 1 2 3
+ ```
+ 
+   #### *3.2 多维切片下的 for-range*
+   
+  > 通过计算行数和矩阵值可以很方便的写出如下 for 循环来：
+  ```
+  for row := range screen {
+      for column := range screen[row] {
+          screen[row][column] = 1
+      }
+  }
+  ```
+  【练习3.2 - 1：】假设我们有如下数组：items := [...]int{10, 20, 30, 40, 50}
+  
+  a) 如果我们写了如下的 for 循环，那么执行完 for 循环后的 items 的值是多少？如果你不确定的话可以测试一下
+  ```
+  for _, item := range items {
+      item *= 2
+  }
+  ```
+  b) 如果 a) 无法正常工作，写一个 for 循环让值可以 double。
+  
+  【练习3.2 - 2：】 sum_array.go
+  
+  a) 写一个 Sum 函数，传入参数为一个 32 位 float 数组成的数组 arrF，返回该数组的所有数字和。
+  
+  如果把数组修改为切片的话代码要做怎样的修改？如果用切片形式方法实现不同长度数组的的和呢？
+  
+  b) 写一个 SumAndAverage 方法，返回两个 int 和 float32 类型的未命名变量的和与平均值。
+  
+  【练习3.2 - 3：】min_max.go
+  
+  写一个 minSlice 方法，传入一个 int 的切片并且返回最小值，再写一个 maxSlice 方法返回最大值。
+ 
+  #### **四，切片的其他操作**
+  
+  #### *4.1 切片重组（reslice）*
+  
+> 我们已经知道切片创建的时候通常比相关数组小，例如：
+  
+ `slice1 := make([]type, start_length, capacity)`
+
+ 其中 start_length 作为切片初始长度而 capacity 作为相关数组的长度。
+
+ 这么做的好处是我们的切片在达到容量上限后可以扩容。
+ 
+ *_定义：_* 改变切片长度的过程称之为切片重组 reslicing，做法如下：
+ * `slice1 = slice1[0:end]`，其中 end 是新的末尾索引（即长度）。
+ 
+ [1] 将切片扩展 1 位可以这么做：`sl = sl[0:len(sl)+1]`
+ 
+ [2] 切片可以反复扩展直到占据整个相关数组。
+ ```go
+ package main
+ import "fmt"
+ 
+ func main() {
+     slice1 := make([]int, 0, 10)
+     // load the slice, cap(slice1) is 10:
+     for i := 0; i < cap(slice1); i++ {
+         slice1 = slice1[0:i+1]
+         slice1[i] = i
+         fmt.Printf("The length of slice is %d\n", len(slice1))
+     }
+ 
+     // print the slice:
+     for i := 0; i < len(slice1); i++ {
+         fmt.Printf("Slice at %d is %d\n", i, slice1[i])
+     }
+ }
+ ```
+ *输出结果：*
+ ```
+ The length of slice is 1
+ The length of slice is 2
+ The length of slice is 3
+ The length of slice is 4
+ The length of slice is 5
+ The length of slice is 6
+ The length of slice is 7
+ The length of slice is 8
+ The length of slice is 9
+ The length of slice is 10
+ Slice at 0 is 0
+ Slice at 1 is 1
+ Slice at 2 is 2
+ Slice at 3 is 3
+ Slice at 4 is 4
+ Slice at 5 is 5
+ Slice at 6 is 6
+ Slice at 7 is 7
+ Slice at 8 is 8
+ Slice at 9 is 9
+ ```
+ 
+ > 另一个例子：
+ ```
+ var ar = [10]int{0,1,2,3,4,5,6,7,8,9}
+ var a = ar[5:7] // reference to subarray {5,6} - len(a) is 2 and cap(a) is 5
+ ```
+ > 将 a 重新分片：
+ `a = a[0:4] // ref of subarray {5,6,7,8} - len(a) is now 4 but cap(a) is still 5`
+ 
+ 【问题4 - 1】：
+ 
+ a) 如果 a 是一个切片，那么 `s[n:n]` 的长度是多少？
+ 
+ b) `s[n:n+1]`的长度又是多少？
+ 
+  #### *4.2 切片的复制与追加*
+  
+  如果想增加切片的容量，我们必须创建一个新的更大的切片并把原分片的内容都拷贝过来。下面的代码描述了从拷贝切片的 copy 函数和向切片追加新元素的 append 函数。
+  
+  ##### *_示例4.2 - 1:_*
+  
+  ```go
+  package main
+  import "fmt"
+  
+  func main() {
+  	sl_from := []int{1, 2, 3}
+  	sl_to := make([]int, 10)
+  
+  	n := copy(sl_to, sl_from)
+  	fmt.Println(sl_to)
+  	fmt.Printf("Copied %d elements\n", n) // n == 3
+  
+  	sl3 := []int{1, 2, 3}
+  	sl3 = append(sl3, 4, 5, 6)
+  	fmt.Println(sl3)
+  }
+  ```
+  
+  `func append(s[]T, x ...T) []T` 其中 append 方法将 0 个或多个具有相同类型 s 的元素追加到切片后面并且返回新的切片；追加的元素必须和原切片的元素同类型。如果 s 的容量不足以存储新增元素，append 会分配新的切片来保证已有切片元素和新增元素的存储。因此，返回的切片可能已经指向一个不同的相关数组了。append 方法总是返回成功，除非系统内存耗尽了。
+  
+  如果你想将切片 y 追加到切片 x 后面，只要将第二个参数扩展成一个列表即可：`x = append(x, y...)`。
+  
+  **注意**： append 在大多数情况下很好用，但是如果你想完全掌控整个追加过程，你可以实现一个这样的 AppendByte 方法：
+  
+  ```go
+  func AppendByte(slice []byte, data ...byte) []byte {
+  	m := len(slice)
+  	n := m + len(data)
+  	if n > cap(slice) { // if necessary, reallocate
+  		// allocate double what's needed, for future growth.
+  		newSlice := make([]byte, (n+1)*2)
+  		copy(newSlice, slice)
+  		slice = newSlice
+  	}
+  	slice = slice[0:n]
+  	copy(slice[m:n], data)
+  	return slice
+  }
+  ```
+  
+  `func copy(dst, src []T) int` copy 方法将类型为 T 的切片从源地址 src 拷贝到目标地址 dst，覆盖 dst 的相关元素，并且返回拷贝的元素个数。源地址和目标地址可能会有重叠。拷贝个数是 src 和 dst 的长度最小值。如果 src 是字符串那么元素类型就是 byte。如果你还想继续使用 src，在拷贝结束后执行 `src = dst`。
+  
+  **练习 4.2 - 1**
+  
+  给定 `slice s[]int` 和一个 int 类型的因子factor，扩展 s 使其长度为 `len(s) * factor`。
+  
+  **练习 4.2 - 2**
+  
+  用顺序函数过滤容器：s 是前 10 个整型的切片。构造一个函数 Filter，第一个参数是 s，第二个参数是一个 `fn func(int) bool`，返回满足函数 fn 的元素切片。通过 fn 测试方法测试当整型值是偶数时的情况。
+  
+  **练习 4.2 - 3**
+  
+  写一个函数 InsertStringSlice 将切片插入到另一个切片的指定位置。
+  
+  **练习 4.2 - 4**
+  
+  写一个函数 RemoveStringSlice 将从 start 到 end 索引的元素从切片 中移除。
+ 
+  
