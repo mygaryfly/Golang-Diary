@@ -175,7 +175,7 @@
  new([100]int)[0:50]
  ```
  > 下图描述了使用 make 方法生成的切片的内存结构：
- ```
+ ```go
  package main
  import "fmt"
  
