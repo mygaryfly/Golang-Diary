@@ -53,7 +53,7 @@
  
  
  ##### *_示例1.2 - 1_*
- ```
+ ```go
  package main
  import "fmt"
  
@@ -105,7 +105,7 @@
  *问题：* 给定切片 b:= []byte{'g', 'o', 'l', 'a', 'n', 'g'}，那么 b[1:4]、b[:2]、b[2:] 和 b[:] 分别是什么？
  * 这里很好的呈现了第[6]点提到的`s == s[:i] + s[i:]`
  > 解析：
- ```
+ ```go
  package main
  
  import "fmt"
@@ -141,7 +141,7 @@
  #### *1.3 将切片传递给函数*
  如果你有一个函数需要对数组做操作，你可能总是需要把参数声明为切片。当你调用该函数时，把数组分片，创建为一个 切片引用并传递给该函数。这里有一个计算数组元素和的方法:
  
- ```
+ ```go
  func sum(a []int) int {
      s := 0
      for i := 0; i < len(a); i++ {
@@ -251,7 +251,7 @@
   
   *问题2.2 - 1：* 给定 `s := make([]byte, 5)`，`len (s)` 和` cap (s) `分别是多少？`s = s[2:4]`，`len (s)` 和 `cap (s) `又分别是多少？
    > 解析：
-  ```
+  ```go
   package main
   
   import "fmt"
@@ -291,7 +291,7 @@
    类型 `[]byte`的切片十分常见，Go 语言有一个 bytes 包专门用来解决这种类型的操作方法。
    
    * bytes 包和字符串包十分类似。而且它还包含一个十分有用的类型 Buffer:
-   ```
+   ```go
    import "bytes"
    
    type Buffer struct {
@@ -322,7 +322,7 @@
   
  Go 语言中 range 关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对。
  > 这种构建方法可以应用于数组和切片:
- ```
+ ```go
  for ix, value := range slice1 {
      ...
  }
@@ -332,7 +332,7 @@
  * value 只是 slice1 某个索引位置的值的一个拷贝，不能用来修改 slice1 该索引位置的值。
  
  #####*_示例3.1-1_*
- ```
+ ```go
  package main
  
  import "fmt"
@@ -352,7 +352,7 @@
 
  ```
   #####*_示例3.1-2_*
-  ```
+  ```go
   package main
   import "fmt"
   
@@ -370,7 +370,7 @@
   ```
   * 给出了一个关于字符串的例子， _ 可以用于忽略索引。
  > 如果你只需要索引，你可以忽略第二个变量，例如：
- ```
+ ```go
  for ix := range seasons {
      fmt.Printf("%d", ix)
  }
@@ -380,7 +380,7 @@
    #### *3.2 多维切片下的 for-range*
    
   > 通过计算行数和矩阵值可以很方便的写出如下 for 循环来：
-  ```
+  ```go
   for row := range screen {
       for column := range screen[row] {
           screen[row][column] = 1
