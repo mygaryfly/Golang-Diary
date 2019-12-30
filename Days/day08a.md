@@ -96,7 +96,7 @@ func main() {
 }
 ```
 *输出结果：*
-```
+```go
 Here is the pointer p: 0x2540820
 Here is the string *p: ciao
 Here is the string s: ciao // 通过对 *p 赋另一个值来更改 “对象”，这样 s 也会随之更改。
