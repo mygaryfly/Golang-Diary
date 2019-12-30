@@ -51,7 +51,7 @@
 * 通过 for 依次处理元素
 
 ##### *_示例 - 1.2.1.1_*
-```
+```go
 package main
 import "fmt"
 
@@ -123,7 +123,7 @@ arr2[2] = 100
 
 如果你想修改原数组，那么 arr2 必须通过 & 操作符以引用方式传过来，例如 func1 (&arr2），下面是一个例子
 ##### *_示例 - 1.2.2.1_*
-```
+```go
 package main
 import "fmt"
 func f(a [3]int) { fmt.Println(a) }
@@ -180,7 +180,7 @@ Person at 4 is Ron
 此外，你可以取任意数组常量的地址来作为指向新实例的指针。
 ##### *_示例 - 1.3.1_*
 
-```
+```go
 package main
 import "fmt"
 
@@ -212,7 +212,7 @@ var vec Vector3D
 内部数组总是长度相同的。Go 语言的多维数组是矩形式的（唯一的例外是切片的数组）
 
 ##### *_示例 - 1.4.1_*
-```
+```go
 package main
 const (
     WIDTH  = 1920
@@ -237,7 +237,7 @@ func main() {
 * 使用数组的切片
 
 > 接下来的例子阐明了第一种方法：
-```
+```go
 package main
 import "fmt"
 
