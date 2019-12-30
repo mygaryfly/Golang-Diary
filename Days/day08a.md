@@ -119,29 +119,38 @@ Here is the string s: ciao // 通过对 *p 赋另一个值来更改 “对象”
     
 
 ##### **2.5 值传递 & 地址传递**
-> 值传递
+> 2.5.1 值传递
 ```go
 package main
 
 import "fmt"
 
-func swap(a,b int)int{
+func swap1(a,b int){
 	a,b = b,a
-	fmt.Printf("swap: a =%d , b=%d\n ",a,b)
+}
+
+func swap2(a,b int){
+	a,b = b,a
+	fmt.Printf("swap2: a =%d , b=%d\n ",a,b)
 }
 
 func main() {
 	a,b:=10,20
 	fmt.Printf("main: a =%d , b=%d\n ",a,b)
+	swap1(a,b)
+	fmt.Printf("swap1: a =%d , b=%d\n ",a,b)
+	swap2(a,b)
 }
 ```
 *输出结果：*
 ```go
 main: a =10 , b=20
- swap: a =20 , b=10
- 
+ swap1: a =10 , b=20
+ swap2: a =20 , b=10
 ```    
-> 地址传递
+* 【重点】- main函数中，a，b作为传参时，其本身的值是不变的，函数swap1中只是对a，b进行引用。
+
+> 2.5.2地址传递
 ```go
 package main
 
@@ -171,8 +180,7 @@ main: a =10 , b=20
  swap1: a =20 , b=10
  swap2: a =20 , b=10
 ```
-* 【重点】- main函数中，a，b作为传参时，其本身的值是不变的，函数swap1中只是对a，b进行引用。
-    * 当利用指针对他们的地址进行交换时，同样是在main的作用域内，a，b的值发生了交换。
+* 【重点】- 当利用指针对他们的地址进行交换时，同样是在main的作用域内，a，b的值发生了交换。
 ##### **注意事项**
 * 1，你不能得到一个文字或常量的地址，例如：
 ```go
