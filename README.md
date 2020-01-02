@@ -33,3 +33,4 @@
 13. [day-13 函数](./Days/day13.md) & [补充-不定参函数/defer/递归函数](./Days/day13a.md) & [Go内置函数](./Days/day13b.md)
 14. [day-14 go语言中的结构体 & 方法](./Days/day14.md)
 15. [day-15 数组](./Days/day15.md) 和 [切片](./Days/day15a.md) 
+16. [day-16 map](./Days/day16.md)
