@@ -28,6 +28,8 @@ fmt.Printf("An integer: %d, it's location in memory: %p\n", i1, &i1)
 * 一个指针变量通常缩写为 ptr
 
 >【注意】
+
+
 >![](./images/d8a_md_a.jpg)
 ```go
 package main

@@ -19,3 +19,36 @@ func main() {
 	swap2(&a, &b)
 	fmt.Printf("swap2: a =%d , b=%d\n ", a, b)
 }
+
+/*
+package main
+
+import (
+"fmt"
+)
+
+var x int
+var f bool
+
+func main(){
+
+	fmt.Scanf("%d\n",&x)
+	fmt.Printf("%v\n",x)
+	fmt.Printf("%v\n",f)
+	judge(x,&f)
+	fmt.Printf("%t\n",f)
+}
+
+func judge(a int,b *bool){
+	b=&f
+	a=x
+	for i:=2;i<a;i++{
+		if a%i==0 {
+		*b = false
+		break
+		}else if a%i>0 {
+			*b = true
+		}
+	}
+}
+*/
