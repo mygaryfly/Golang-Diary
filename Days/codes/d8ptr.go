@@ -20,7 +20,7 @@ func main() {
 	fmt.Printf("swap2: a =%d , b=%d\n ", a, b)
 }
 
-/*
+/* 质数
 package main
 
 import (
