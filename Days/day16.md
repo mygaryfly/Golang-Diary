@@ -2,7 +2,7 @@
 
 #### **一，map概念 - 声明、初始化和 make**
 
-##### **1.1 概念**
+#### **1.1 概念**
 * map 是一种特殊的数据结构：一种元素对（pair）的无序集合，pair 的一个元素是 key，对应的另一个元素是 value，所以这个结构也称为关联数组或字典。这是一种快速寻找值的理想结构：给定 key，对应的 value 可以迅速定位。
 
 * map 这种数据结构在其他编程语言中也称为字典（Python）、hash 和 HashTable 等。
@@ -14,7 +14,7 @@ var map1 map[string]int
 ```
 （`[keytype]`和 `valuetype` 之间允许有空格，但是 gofmt 移除了空格）
 
-##### **1.2 声明、初始化**
+#### **1.2 声明、初始化**
 
 【**重要**】
 
@@ -106,7 +106,7 @@ Mpa literal at "ten" is: 0
 接下来当我们调用：mapCreated["key1"] = 4.5 的时候，编译器会报错：
 `invalid operation: mapCreated["key1"] (index of type *map[string]float32).`
 
-##### **1.3 map 容量**
+#### **1.3 map 容量**
 
 和数组不同，map 可以根据新增的 key-value 对动态的伸缩，因此它不存在固定长度或者最大限制。
 
@@ -122,7 +122,7 @@ noteFrequency := map[string]float32 {
     "G0": 24.50, "A0": 27.50, "B0": 30.87, "A4": 440}
 ```
 
-##### **1.4 用切片作为 map 的值**
+#### **1.4 用切片作为 map 的值**
 
 既然一个 key 只能对应一个 value，而 value 又是一个原始类型，那么如果一个 key 要对应多个值怎么办？例如，当我们要处理 unix 机器上的所有进程，以父进程（pid 为整形）作为 key，所有的子进程（以所有子进程的 pid 组成的切片）作为 value。通过将 value 定义为 []int 类型或者其他类型的切片，就可以优雅的解决这个问题。
 
@@ -130,4 +130,84 @@ noteFrequency := map[string]float32 {
 ```go
 mp1 := make(map[int][]int)
 mp2 := make(map[int]*[]int)
+```
+
+#### **二，测试键值对是否存在及删除元素**
+
+#### **2.1 测试键值**
+
+测试 map1 中是否存在 key1：
+
+我们已经见过可以使用 `val1 = map1[key1]` 的方法获取 key1 对应的值 val1。如果 map 中不存在 key1，val1 就是一个值类型的空值。
+
+这就会给我们带来困惑了：现在我们没法区分到底是 key1 不存在还是它对应的 value 就是空值。
+
+为了解决这个问题，我们可以这么用：`val1, isPresent = map1[key1]`
+
+isPresent 返回一个 bool 值：如果 key1 存在于 map1，val1 就是 key1 对应的 value 值，并且 isPresent为true；如果 key1 不存在，val1 就是一个空值，并且 isPresent 会返回 false。
+
+如果你只是想判断某个 key 是否存在而不关心它对应的值到底是多少，你可以这么做：
+
+```go
+_, ok := map1[key1] // 如果key1存在则ok == true，否则ok为false
+```
+
+或者和 if 混合使用：
+
+```go
+if _, ok := map1[key1]; ok {
+	// ...
+}
+```
+
+#### **2.2 删除元素**
+
+从 map1 中删除 key1：
+
+直接 `delete(map1, key1)` 就可以。
+
+如果 key1 不存在，该操作不会产生错误。
+
+##### *_示例 2.2 - 1:_*
+
+```go
+package main
+import "fmt"
+
+func main() {
+	var value int
+	var isPresent bool
+
+	map1 := make(map[string]int)
+	map1["New Delhi"] = 55
+	map1["Beijing"] = 20
+	map1["Washington"] = 25
+	value, isPresent = map1["Beijing"]
+	if isPresent {
+		fmt.Printf("The value of \"Beijing\" in map1 is: %d\n", value)
+	} else {
+		fmt.Printf("map1 does not contain Beijing")
+	}
+
+	value, isPresent = map1["Paris"]
+	fmt.Printf("Is \"Paris\" in map1 ?: %t\n", isPresent)
+	fmt.Printf("Value is: %d\n", value)
+
+	// delete an item:
+	delete(map1, "Washington")
+	value, isPresent = map1["Washington"]
+	if isPresent {
+		fmt.Printf("The value of \"Washington\" in map1 is: %d\n", value)
+	} else {
+		fmt.Println("map1 does not contain Washington")
+	}
+}
+```
+
+*输出结果：*
+```go
+	The value of "Beijing" in map1 is: 20
+	Is "Paris" in map1 ?: false
+	Value is: 0
+    map1 does not contain Washington
 ```
