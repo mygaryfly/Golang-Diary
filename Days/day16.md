@@ -211,3 +211,78 @@ func main() {
 	Value is: 0
     map1 does not contain Washington
 ```
+
+#### **三，for-range 的配套用法**
+
+可以使用 for 循环构造 map：
+
+```go
+for key, value := range map1 {
+	...
+}
+```
+
+第一个返回值 key 是 map 中的 key 值，第二个返回值则是该 key 对应的 value 值；这两个都是仅 for 循环内部可见的局部变量。其中第一个返回值key值是一个可选元素。如果你只关心值，可以这么使用：
+
+```go
+for _, value := range map1 {
+	...
+}
+```
+
+如果只想获取 key，你可以这么使用：
+
+```go
+for key := range map1 {
+	fmt.Printf("key is: %d\n", key)
+}
+```
+
+##### *_示例 3 - 1:_*
+
+```go
+package main
+import "fmt"
+
+func main() {
+	map1 := make(map[int]float32)
+	map1[1] = 1.0
+	map1[2] = 2.0
+	map1[3] = 3.0
+	map1[4] = 4.0
+	for key, value := range map1 {
+		fmt.Printf("key is: %d - value is: %f\n", key, value)
+	}
+}
+```
+
+输出结果：
+```go
+	key is: 3 - value is: 3.000000
+	key is: 1 - value is: 1.000000
+	key is: 4 - value is: 4.000000
+	key is: 2 - value is: 2.000000
+```
+注意 map 不是按照 key 的顺序排列的，也不是按照 value 的序排列的。(我测试的时候是按顺序排列的)
+![for-range 的配套用法](https://cdn.learnku.com/uploads/images/201907/10/44202/uEBh2968A3.png!large)
+
+
+问题： 下面这段代码的输出是什么？
+
+```go
+capitals := map[string] string {"France":"Paris", "Italy":"Rome", "Japan":"Tokyo" }
+for key := range capitals {
+	fmt.Println("Map item: Capital of", key, "is", capitals[key])
+}
+```
+*输出结果：*
+
+```go
+Map item: Capital of France is Paris
+Map item: Capital of Italy is Rome
+Map item: Capital of Japan is Tokyo
+```
+
+**练习 3.1**
+
+创建一个 map 来保存每周 7 天的名字，将它们打印出来并且测试是否存在 Tuesday 和 Hollyday。
