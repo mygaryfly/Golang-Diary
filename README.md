@@ -14,6 +14,8 @@
 ### 菜鸟开始飞
 * [Go语言编程规范](./Days/day11b.md)
 * [Start Coding & Training](./Start%20coding.md)
+* [力扣算法题](./Algorithm/Algorithm.md)
+
 # Golang-Diary
 
 >No matter finally i will start with Golang or not, I will keep learning codes.
