@@ -123,7 +123,7 @@ if val := 10; val > max {
 * **【注意事项】** 使用简短方式 := 声明的变量的作用域只存在于 if 结构中（在 if 结构的大括号之间，如果使用 if-else 结构则在 else 代码块中变量也会存在）。如果变量在 if 结构之前就已经存在，那么在 if 结构中，该变量原来的值会被隐藏。最简单的解决方案就是不要在初始化语句中声明变量
 
 ##### **示例2**
-```
+```go
 package main
 
 import "fmt"
@@ -152,3 +152,10 @@ first is 5 or greater
 cond is not greater than 10
 ```
 
+下面的代码片段展示了如何通过在初始化语句中获取函数 `process()` 的返回值，并在条件语句中作为判定条件来决定是否执行 if 结构中的代码：
+
+```go
+if value := process(data); value > max {
+    ...
+}
+```
