@@ -286,3 +286,101 @@ Map item: Capital of Japan is Tokyo
 **练习 3.1**
 
 创建一个 map 来保存每周 7 天的名字，将它们打印出来并且测试是否存在 Tuesday 和 Hollyday。
+
+#### **四，map 的排序 & 将 map 的键值对调**
+
+#### **4.1 map 的排序**
+map 默认是无序的，不管是按照 key 还是按照 value 默认都不排序
+
+如果你想为 map 排序，需要将 key（或者 value）拷贝到一个切片，再对切片排序（使用 sort 包），然后可以使用切片的 for-range 方法打印出所有的 key 和 value。
+
+>下面有一个示例：
+```go
+// the telephone alphabet:
+package main
+import (
+    "fmt"
+    "sort"
+)
+
+var (
+    barVal = map[string]int{"alpha": 34, "bravo": 56, "charlie": 23,
+                            "delta": 87, "echo": 56, "foxtrot": 12,
+                            "golf": 34, "hotel": 16, "indio": 87,
+                            "juliet": 65, "kili": 43, "lima": 98}
+)
+
+func main() {
+    fmt.Println("unsorted:")
+    for k, v := range barVal {
+        fmt.Printf("Key: %v, Value: %v / ", k, v)
+    }
+    keys := make([]string, len(barVal))
+    i := 0
+    for k, _ := range barVal {
+        keys[i] = k
+        i++
+    }
+    sort.Strings(keys)
+    fmt.Println()
+    fmt.Println("sorted:")
+    for _, k := range keys {
+        fmt.Printf("Key: %v, Value: %v / ", k, barVal[k])
+    }
+}
+```
+*输出结果：*
+```go
+unsorted:
+Key: bravo, Value: 56 / Key: echo, Value: 56 / Key: indio, Value: 87 / Key: juliet, Value: 65 / Key: alpha, Value: 34 / Key: charlie, Value: 23 / Key: delta, Value: 87 / Key: foxtrot, Value: 12 / Key: golf, Value: 34 / Key: hotel, Value: 16 / Key: kili, Value: 43 / Key: lima, Value: 98 /
+sorted:
+Key: alpha, Value: 34 / Key: bravo, Value: 56 / Key: charlie, Value: 23 / Key: delta, Value: 87 / Key: echo, Value: 56 / Key: foxtrot, Value: 12 / Key: golf, Value: 34 / Key: hotel, Value: 16 / Key: indio, Value: 87 / Key: juliet, Value: 65 / Key: kili, Value: 43 / Key: lima, Value: 98 /
+```
+* 但是如果你想要一个排序的列表你最好使用结构体切片，这样会更有效：
+```go
+type name struct {
+    key string
+    value int
+}
+```
+
+#### **4.2 map 的键值对调**
+
+这里对调是指调换 key 和 value。如果 map 的值类型可以作为 key 且所有的 value 是唯一的，那么通过下面的方法可以简单的做到键值对调
+
+##### *_示例 4 - 1:_*
+```go
+package main
+import (
+    "fmt"
+)
+
+var (
+    barVal = map[string]int{"alpha": 34, "bravo": 56, "charlie": 23,
+                            "delta": 87, "echo": 56, "foxtrot": 12,
+                            "golf": 34, "hotel": 16, "indio": 87,
+                            "juliet": 65, "kili": 43, "lima": 98}
+)
+
+func main() {
+    invMap := make(map[int]string, len(barVal))
+    for k, v := range barVal {
+        invMap[v] = k
+    }
+    fmt.Println("inverted:")
+    for k, v := range invMap {
+        fmt.Printf("Key: %v, Value: %v / ", k, v)
+    }
+}
+```
+*输出结果：*
+```go
+inverted:
+Key: 34, Value: golf / Key: 23, Value: charlie / Key: 16, Value: hotel / Key: 87, Value: delta / Key: 98, Value: lima / Key: 12, Value: foxtrot / Key: 43, Value: kili / Key: 56, Value: bravo / Key: 65, Value: juliet /
+```
+
+如果原始 value 值不唯一那么这么做肯定会出错；为了保证不出错，当遇到不唯一的 key 时应当立刻停止，这样可能会导致没有包含原 map 的所有键值对！一种解决方法就是仔细检查唯一性并且使用多值 map，比如使用 `map[int][]string `类型。
+
+**练习 4.1**
+
+构造一个将英文饮料名映射为法语（或者任意你的母语）的集合；先打印所有的饮料，然后打印原名和翻译后的名字。接下来按照英文名排序后再打印出来。
