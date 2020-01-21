@@ -20,15 +20,21 @@ import (
 func main(){
 	var fd map[string]string
 	fd = map[string]string{"牛奶":"Le lait","柠檬水":"Limonade","橙汁":"Jus d'orange","咖啡":"Le café,","酸奶":"Yaourt","椰汁":"Lait de coco"}
-	for k1,v1:=range fd{
-		fmt.Printf("%s 法语名称:%s\n",k1,v1)
+	for k1,_:=range fd{
+		fmt.Println(k1)
 	}
-	var ed []string
+	
+	fmt.Println("-----打印原名和翻译后的名字-----")
+	
+	for k1,v1:=range fd{
+	fmt.Printf("%s 法语名称:%s\n",k1,v1)
+	}
+		
+	fmt.Println("-----按照英文名排序-----")
+	ed:=[]string{}
 	ed = []string{"Milk","Lemonade","Coffee","Orange juice","Yogurt","Coconut milk"}
 	sort.Strings(ed)
-	for i:=0;i<len(ed);i++{
-		fmt.Printf("%s\n",ed[i])
-	}
-	for k2,v2:=range ed{
+	for _,v1:=range ed{
+	fmt.Printf("英: %s\n",v1)
 	}
 }
