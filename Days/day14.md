@@ -13,7 +13,7 @@
 ##### **1.1 - 定义结构体**
 
 结构体定义需要使用 type 和 struct 语句。struct 语句定义一个新的数据类型，结构体中有一个或多个成员。type 语句设定了结构体的名称。结构体的格式如下：
-```
+```go
 type struct_variable_type struct {
    member definition
    member definition
@@ -28,7 +28,7 @@ variable_name := structure_variable_type {value1, value2...valuen}
 variable_name := structure_variable_type { key1: value1, key2: value2..., keyn: valuen}
 ```
 > **比如**
-```
+```go
 package main
 
 import "fmt"
@@ -60,7 +60,7 @@ func main() {
 {Go 语言 www.runoob.com  0}
 ```
 ##### *示例 - 1*
-```
+```go
 package main
 
 import "fmt"
@@ -88,7 +88,7 @@ type hello struct {
 *_如果要访问结构体成员，需要使用点号`.`操作符，格式为：_* `结构体.成员名`
 
 > 结构体类型变量使用 struct 关键字定义，实例如下：
-```
+```go
 package main
 
 import "fmt"
@@ -144,7 +144,7 @@ Book 2 book_id : 6495700
 ##### **1.3 - 结构体作为参数传递给函数**
 * 你可以像其他数据类型一样将结构体类型作为参数传递给函数。并以以上实例的方式访问结构体变量：
 > 比如：
-```
+```go
 package main
 
 import "fmt"
@@ -208,7 +208,7 @@ Book book_id : 6495700
 
 *_接下来让我们使用结构体指针重写以上实例，代码如下：_*
 > 从打印 Book1 和Book2信息这里开始替换,可以得到相同的输出结果
-```
+```go
 /* 打印 Book1 信息 */
    printBook(&Book1)
 
@@ -248,7 +248,7 @@ func (variable_name variable_data_type) function_name() [return_type]{
 * 【重要】同一个包下的任何类型都可以声明方法，只要它的类型既不是指针类型也不是接口类型。
 > 下面定义一个结构体类型和该类型的一个方法：
 
-```
+```go
 package main
 
 import (
@@ -276,7 +276,7 @@ func (c Circle) getArea() float64 {
 `圆的面积 =  314`
 
 ##### *示例 - 2*
-```
+```go
 package main
 
 import (
